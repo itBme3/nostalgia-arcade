@@ -1,0 +1,222 @@
+.home-title {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 7vw;
+    animation-name: wave;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #11121c;
+}
+
+@for $i from 1 through 6 {
+    .home-title:nth-of-type(#{$i}) {
+        animation-duration: 6s;
+        animation-delay: 1.5s - calc($i / 4);
+        filter: blur(calc(#{i} * 2px));
+    }
+}
+
+@keyframes wave {
+    40%,
+    50% {
+        transform: translate(-50%, -55%) scale(1.2);
+        opacity: 1;
+    }
+
+    10%,
+    90%,
+    100% {
+        transform: translate(-50%, -45%) scale(1);
+        opacity: 0.3;
+        // filter: saturate(1.2);
+    }
+}
+
+.home-title {
+    @media screen and (min-width: 768px) {
+        font-size: 3.5rem;
+        -webkit-text-stroke-width: 2px;
+    }
+    @media screen and (min-width: 960px) {
+        font-size: 4rem;
+    }
+}
+
+body .home-title:nth-of-type(1) {
+    text-shadow: 10px 0 0 white;
+    opacity: 1 !important;
+}
+
+:root {
+    --glow-streak-color: #03f4f4;
+    --gradient-start: #03f4f4;
+    --gradient-end: #065dd4;
+}
+
+.glowing-button:nth-of-type(2) {
+    --glow-streak-color: #8735ff;
+    --gradient-start: #8735ff;
+    --gradient-end: #5a0099;
+}
+
+.glowing-button:nth-of-type(3) {
+    --glow-streak-color: #ff479c;
+    --gradient-start: #ff479c;
+    --gradient-end: #a00a73;
+}
+
+@mixin glowing-anim-defaults() {
+    position: absolute;
+    animation-duration: 10s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    transition: all ease-in-out 0.3;
+}
+.glowing-button {
+    @apply relative overflow-visible w-full max-w-xs mx-auto text-white z-10;
+    @apply p-0 #{!important};
+    text-shadow: 1px 2px 0 rgba(0,0,0,.6);
+    .inner {
+        @apply relative z-10;
+    }
+    .inner {
+        @apply bg-gray-900 p-8 rounded-lg w-full block overflow-hidden relative;
+        span {
+            @apply rounded-full opacity-0;
+        }
+        span:nth-child(1) {
+            @apply w-full;
+            left: 0;
+            top: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--glow-streak-color));
+            animation-name: glow-right;
+            @include glowing-anim-defaults();
+        }
+        span:nth-child(2) {
+            @apply h-full;
+            left: auto;
+            right: 0;
+            top: 0;
+            width: 3px;
+            background: linear-gradient(180deg, transparent, var(--glow-streak-color));
+            animation-name: glow-down;
+            @include glowing-anim-defaults();
+        }
+        span:nth-child(3) {
+            @apply w-full;
+            right: 0;
+            top: auto;
+            bottom: 0;
+            height: 3px;
+            background: linear-gradient(270deg, transparent, var(--glow-streak-color));
+            animation-name: glow-left;
+            @include glowing-anim-defaults();
+        }
+        span:nth-child(4) {
+            @apply h-full;
+            left: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(360deg, transparent, var(--glow-streak-color));
+            animation-name: glow-up;
+            @include glowing-anim-defaults();
+        }
+    }
+    &:hover {
+        .inner {
+            @apply bg-transparent #{!important};
+            &::after {
+                @apply absolute inset-1 border-2 border-white;
+                content: "";
+                filter: blur(10px);
+            }
+            span {
+                opacity: 0;
+            }
+        }
+        &::before {
+            @apply absolute inset-0 rounded-lg;
+            background-image: linear-gradient(180deg, var(--gradient-start), var(--gradient-end));
+            z-index: 0;
+            content: "";
+        }
+        &::after {
+            @apply absolute -inset-1 rounded-lg;
+            z-index: 0;
+            background-image: linear-gradient(180deg, var(--gradient-start), var(--gradient-end));
+            content: "";
+            filter: blur(40px);
+        }
+    }
+}
+
+@for $i from 1 through 20 {
+    .glowing-button:nth-of-type(#{$i}) {
+        span {
+            animation-delay: #{$i * 1.5}s;
+        }
+    }
+}
+
+@keyframes glow-right {
+    from {
+        left: -100%;
+        opacity: 1;
+    }
+    20% {
+        left: 100%;
+    }
+    to {
+        left: 100%;
+    }
+}
+@keyframes glow-down {
+    from {
+        top: -100%;
+        opacity: 1;
+    }
+    10% {
+        top: -100%;
+    }
+    20% {
+        top: 100%;
+    }
+    to {
+        top: 100%;
+    }
+}
+@keyframes glow-left {
+    from {
+        right: -100%;
+        opacity: 1;
+    }
+    16% {
+        right: -100%;
+    }
+    30% {
+        right: 100%;
+    }
+    to {
+        right: 100%;
+    }
+}
+@keyframes glow-up {
+    from {
+        bottom: -100%;
+        opacity: 1;
+    }
+    22% {
+        bottom: -100%;
+    }
+    40% {
+        bottom: 100%;
+    }
+    to {
+        bottom: 100%;
+    }
+}

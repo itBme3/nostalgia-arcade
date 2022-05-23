@@ -1,0 +1,48 @@
+@import './tailwind.css';
+@import './animation.scss';
+body {
+  @apply bg-gray-900;
+}
+
+:root {
+  --button-color: rgb(224, 153, 254);
+}
+
+.button {
+  @apply rounded hover:scale-105 scale-100 py-2 px-3 uppercase tracking-[.1ch] shadow-lg hover:shadow-xl transition-all ease-in-out w-full;
+}
+.message-title {
+  @apply text-2xl mb-2 -mt-20;
+}
+
+.neon-button {
+  @apply font-black;
+  border: 3px solid var(--button-color);
+  color: var(--button-color);
+  text-shadow: 0 0 20px var(--button-color), 0 0 40px var(--button-color);
+  box-shadow: 
+    inset 0 0 30px var(--button-color),
+    0 0 20px var(--button-color),
+    0 0 60px var(--button-color);
+    &:after {
+      @apply absolute h-full w-full left-0 top-[110%] opacity-80;
+      content: "";
+      background-color: var(--button-color);
+      transform: perspective(1rem) rotateX(40deg) scale(.9, .3);
+      filter: blur(1rem);
+      pointer-events: none;
+    }
+    &:hover, &:focus {
+      background-color: var(--button-color);
+      color: inherit;
+      box-shadow: 
+        inset 0 0 30px var(--button-color),
+        0 0 20px var(--button-color),
+        0 10px 60px var(--button-color),
+        0 0 80px var(--button-color);
+        &:after {
+          transform: perspective(1rem) rotateX(40deg) scale(1, .4);
+        }
+    }
+}
+
