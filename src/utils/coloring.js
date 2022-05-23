@@ -1,4 +1,5 @@
-import { scale } from 'chroma-js';
+import chroma from 'chroma-js';
+const { scale } = chroma;
 // export const rainbow = [
 //   // '#a2fc3b',
 //   '#04fc84',

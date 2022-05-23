@@ -2,9 +2,10 @@
   "name": "nostalgia-arcade",
   "version": "0.0.1",
   "scripts": {
-    "dev": "svelte-kit dev",
+    "dev": "svelte-kit dev -p 3332",
     "build": "svelte-kit build",
     "package": "svelte-kit package",
+    "start": "svelte-kit preview -p 3332",
     "preview": "svelte-kit preview",
     "prepare": "svelte-kit sync",
     "check": "svelte-check --tsconfig ./jsconfig.json",
