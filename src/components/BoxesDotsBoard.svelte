@@ -1,12 +1,12 @@
 <script>
-import { boardMatrix, boardDimensions, ownedSquares } from '../stores/boxes-dots.js'
+import { boardMatrix, boardDimensions } from '../stores/boxes-dots.js'
 import { currentPlayer } from '../stores/boxes-dots.js'
 import { onMount } from 'svelte'
 import BoxesDotsSquare from './BoxesDotsSquare.svelte'
 import BoxesDotsScore from './BoxesDotsScore.svelte'
 let w;
 let h;
-const squareSize = 50;
+const squareSize = 80;
 const setMatrix = () => {
   boardDimensions.set([Math.floor(h / squareSize), Math.floor(w / squareSize)])
 }
@@ -22,7 +22,7 @@ onMount(() => {
     <BoxesDotsScore />
 </div>
 
-<div class="flex content-center text-center max-w-lg w-[calc(100vw-2rem)] h-[80vh] mx-auto"
+<div class="flex content-center text-center max-w-3xl w-[calc(100vw-2rem)] h-[80vh] mx-auto"
   bind:offsetWidth={w}
   bind:offsetHeight={h}>
 

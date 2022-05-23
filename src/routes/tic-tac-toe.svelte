@@ -65,7 +65,9 @@
                 on:click={() => setSpace(i, ii)}
                 class={`space${ $winningSpaces.includes(`${i},${ii}`) ? ' winning-space' : ''}`} 
                 disabled={$board[i][ii] !== null}>
-                <span class={`m-auto text-4xl ${space === 'x' ? 'text-pink-500' : 'text-cyan-500'}`}>{['x','o'].includes(space) ? space : ''}</span>
+                <span class={`m-auto ${space === 'x' ? 'text-pink-500' : 'text-cyan-500'}`}>
+                    {['x','o'].includes(space) ? space : ''}
+                </span>
             </button>
             {/each}
         </div>
@@ -74,13 +76,16 @@
 </div>
 <style>
     .tic-tac-toe-board {
-        @apply mx-auto max-w-[400px] space-y-1;
+        @apply mx-auto max-w-[400px] space-y-1 p-3;
     }
     .tic-tac-toe-board .row {
         @apply space-x-1;
     }
     .space {
-        @apply w-1/3 h-24 rounded cursor-pointer flex items-center text-white bg-gray-800 content-center text-center;
+        @apply w-1/3 h-[30vw] xs:h-28 rounded cursor-pointer flex items-center text-white bg-gray-800 content-center text-center;
+    }
+    .space span {
+        @apply text-4xl xs:text-6xl;
     }
     .space:disabled, .space:hover {
         @apply bg-opacity-50;

@@ -15,12 +15,12 @@
 </script>
 
 <div class={`flex flex-col w-screen h-screen items-center content-center winner-${$winner}`}>
-    <div class="message flex m-auto flex-col content-center items-center mt-auto mb-6">
-        <h1 class="text-4xl sm:text-6xl font-black text-center leading-normal">{message}</h1>
+    <div class="message flex m-auto max-w-lg flex-col content-center items-center mt-auto mb-8">
+        <h1 class="text-4xl sm:text-5xl font-black text-center !leading-relaxed">{message}</h1>
     </div>
     <BoxesDotsScore />
     <button 
-        class="button neon-button mt-6 mb-auto w-40 rounded-md mt-8"
+        class="button neon-button mb-auto !w-56 rounded-md mt-8"
         on:click={resetGame}>
         Play Again
     </button>

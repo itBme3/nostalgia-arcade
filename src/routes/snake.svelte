@@ -2,26 +2,40 @@
   import SnakeSquare from '../components/SnakeSquare.svelte'
   import ArcadeScores from '../components/ArcadeScores.svelte'
   import GameMessages from '../components/GameMessages.svelte'
-  import { direction, squares, occupied, food, colors, difficulty } from '../stores/snake.js'
+  import { direction, squares, occupied, food, colors, difficulty, defaultValues } from '../stores/snake.js'
   import { scores } from '../stores/scores.js'
   import { onMount, onDestroy } from 'svelte'
   import { randomInt } from '../utils/funcs.js'
   let matrixCount = 30
+  /**
+* @type {any}
+*/
   let matrix = [...new Array(matrixCount)].map(() => [...new Array(matrixCount)].map(() => 0))
-  squares.set(matrix.reduce((acc, row, i) => {
+  squares.set(matrix.reduce((/** @type {any} */ acc, /** @type {any[]} */ row, /** @type {any} */ i) => {
     return [...acc, ...row.map((col, ii) => [i,ii])]
   }, []));
+  /**
+* @type {number}
+*/
   let w;
+  /**
+* @type {NodeJS.Timeout | undefined}
+*/
   let interval;
   let paused = false;
-  let currentDifficulty = 5;
+  let currentDifficulty = defaultValues.difficulty;
   let gameIsOver = false;
+    /**
+* @type {null | string}
+*/
   let lastDirection = null
+    /**
+* @type {null | string}
+*/
   let nextDirection = null
 
   $: boardWidth = Math.floor((w - matrixCount) / matrixCount) * matrixCount
   $: squareSize = `${Math.round(boardWidth / matrixCount)}px`
-  $: newDifficulty = currentDifficulty !== $difficulty
 
   const gameOver = () => {
     clearTimeout(interval)
@@ -70,6 +84,7 @@
       if (nextDirection) {
         direction.set(nextDirection);
       }
+      /** @type {any} */
       const nextSquare = (() => {
         switch (nextDirection ? nextDirection : $direction) {
           case 'left': 
@@ -91,7 +106,7 @@
       if(gameIsOver) {
         return gameOver()
       }
-      occupied.update((arr) => {
+      occupied.update((/** @type {any} */ arr) => {
         const res = [nextSquare, ...arr];
         lastDirection = $direction;
         if (!res.map(sqr => sqr.join()).includes($food.join())) {

@@ -9,9 +9,9 @@
 
 <style>
     .scoreboard {
-        @apply flex items-center w-36 mx-auto;
+        @apply flex items-center w-56 mx-auto;
     }
     .scoreboard span {
-         @apply rounded bg-gray-900 bg-opacity-80 inline-block px-3 py-1;
+         @apply rounded bg-gray-900 bg-opacity-80 inline-block px-3 py-1  text-2xl sm:text-3xl;
     }
 </style>

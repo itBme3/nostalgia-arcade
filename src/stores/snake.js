@@ -1,6 +1,6 @@
 import { browser } from '$app/env';
 import { randomInt } from '../utils/funcs.js';
-import { writable, derived } from 'svelte/store';
+import { writable, readable, derived } from 'svelte/store';
 import { getColors } from '../utils/coloring';
 
 export const direction = writable('right');
@@ -11,16 +11,20 @@ export const occupied = writable([[3, 3]]);
 
 export const colors = derived(occupied, ($occupied) => getColors($occupied));
 
+export const defaultValues = {
+  difficulty: 7
+}
+
 export const createDifficulty = () => {
   let stored = (() => {
     try {
       if (browser) {
         return parseInt(window.localStorage.snakeDifficulty) > 0
           ? parseInt(window.localStorage.snakeDifficulty)
-          : 5;
+          : defaultValues.difficulty;
       }
     } catch {
-      return 5;
+      return defaultValues.difficulty;
     }
   })();
   const { set, update, subscribe } = writable(stored);

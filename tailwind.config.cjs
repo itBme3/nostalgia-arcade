@@ -11,9 +11,14 @@ const gray = {
     "gray-800": "#1c1c24",
     "gray-900": "#101015"
 }
+const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   content: ['./src/**/*.{svelte,js,ts,html,scss,css}'],
-	theme: {
+  theme: {
+    screens: {
+      xs: '480px',
+      ...defaultTheme.screens
+    },
 		extend: {
 			fontFamily: {
 				arcade: '"Press Start 2P"',
