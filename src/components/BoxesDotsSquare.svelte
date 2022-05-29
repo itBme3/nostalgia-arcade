@@ -60,7 +60,7 @@ afterUpdate(() => {
 }
 .side::after {
   content: "";
-  @apply m-auto bg-gray-900 w-[2px] h-[2px];
+  @apply m-auto bg-gray-900 w-[4px] h-[4px];
 }
 .side.top::after, .side.bottom::after {
   @apply w-full;
