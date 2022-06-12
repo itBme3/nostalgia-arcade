@@ -6,7 +6,7 @@ import BoxesDotsSquare from './BoxesDotsSquare.svelte'
 import BoxesDotsScore from './BoxesDotsScore.svelte'
 let w;
 let h;
-const squareSize = 220;
+const squareSize = 60;
 const setMatrix = () => {
   boardDimensions.set([Math.floor(h / squareSize), Math.floor(w / squareSize)])
 }
